@@ -4,32 +4,14 @@ const ANIMATION_LENGTH = 700;
 const RIPPLE_SIZE = 100;
 const RIPPLE_COLOR = 'rgba(0, 0, 0, 0.3)';
 
-if (typeof document !== 'undefined') {
-  const style = document.createElement('style');
-
-  const keyframes = `
-    @keyframes use-ripple-animation {
-      from {
-        opacity: 1;
-        transform: scale(0);
-      }
-      to {
-        opacity: 0;
-        transform: scale(10);
-      }
-    }
-    `;
-
-  style.innerHTML = keyframes;
-
-  document.querySelector('head')?.appendChild(style);
-}
 
 export interface RippleOptions {
   disabled?: boolean;
   rippleColor?: string;
   animationLength?: number;
   rippleSize?: number;
+  startScale: number;
+  endScale: number;
   excludedRefs?: RefObject<HTMLElement>[];
 }
 
@@ -108,6 +90,22 @@ export const useRipple = (
     if (options?.disabled || !ref?.current) {
       return;
     }
+    const style = document.createElement('style');
+    const keyframes = `
+      @keyframes use-ripple-animation {
+        from {
+          opacity: 1;
+          transform: scale(${options?.startScale || 0});
+        }
+        to {
+          opacity: 0;
+          transform: scale(${options?.endScale || 10});
+        }
+      }
+      `;
+
+    style.innerHTML = keyframes;
+    document.querySelector('head')?.appendChild(style);
 
     const element = ref.current;
     const elementPosition = getComputedStyle(element).getPropertyValue(

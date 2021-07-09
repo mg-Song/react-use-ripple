@@ -1,4 +1,4 @@
-# react-use-ripple
+# react-use-ripple fork version @mg-Song
 
 > A react hook to implement [Material Design ripple overlays](https://www.google.com)
 
@@ -47,6 +47,8 @@ export default App;
   - rippleColor\* `<string>` **Default** `rgba(0, 0, 0, 0.3)`
   - animationLength** `<number>` **Default\*\* `700`
   - rippleSize**\* `<number>` **Default\*\* `100`
+  - startScale**\* `<number>` **Default\*\* `1`
+  - endScale**\* `<number>` **Default\*\* `10`
   - excludedRefs**\*\* `<RefObject<HTMLElement>>[]` **Default\*\* `[]`
 
 > \* `rippleColor` can be any valid css color that is supported by the targeted browsers

@@ -1,8 +1,7 @@
 {
   "name": "react-use-ripple-example",
   "homepage": "https://github.com/cbadger85/react-use-ripple",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
   "dependencies": {
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
