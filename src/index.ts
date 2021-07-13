@@ -6,12 +6,13 @@ const RIPPLE_COLOR = 'rgba(0, 0, 0, 0.3)';
 
 
 export interface RippleOptions {
+  id?: string;
   disabled?: boolean;
   rippleColor?: string;
   animationLength?: number;
   rippleSize?: number;
-  startScale: number;
-  endScale: number;
+  startScale?: number;
+  endScale?: number;
   excludedRefs?: RefObject<HTMLElement>[];
 }
 
@@ -71,7 +72,7 @@ const createRipple = (element: HTMLElement, options?: RippleOptions) => (
     pointer-events: none;
     width: ${rippleSize}px;
     height: ${rippleSize}px;
-    animation: use-ripple-animation ${options?.animationLength ||
+    animation: ${options?.id || 'use-ripple-animation'} ${options?.animationLength ||
       ANIMATION_LENGTH}ms ease-in;
   `;
 
@@ -90,22 +91,30 @@ export const useRipple = (
     if (options?.disabled || !ref?.current) {
       return;
     }
-    const style = document.createElement('style');
-    const keyframes = `
-      @keyframes use-ripple-animation {
-        from {
-          opacity: 1;
-          transform: scale(${options?.startScale || 0});
-        }
-        to {
-          opacity: 0;
-          transform: scale(${options?.endScale || 10});
-        }
-      }
-      `;
+    
+    const styleId = options?.id || 'use-ripple-animation';
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement('style');
+      style.id = styleId
 
-    style.innerHTML = keyframes;
-    document.querySelector('head')?.appendChild(style);
+      const keyframes = `
+        @keyframes ${options?.id || 'use-ripple-animation'} {
+          from {
+            opacity: 1;
+            transform: scale(${options?.startScale || 0});
+          }
+          to {
+            opacity: 0;
+            transform: scale(${options?.endScale || 10});
+          }
+        }
+        `;
+
+      style.innerHTML = keyframes;
+      document.querySelector('head')?.appendChild(style);
+    }
+
+
 
     const element = ref.current;
     const elementPosition = getComputedStyle(element).getPropertyValue(
@@ -130,6 +139,7 @@ export const useRipple = (
     element.addEventListener('keydown', keyboardRipple);
 
     return () => {
+
       element.removeEventListener('mousedown', ripple);
       element.removeEventListener('keydown', keyboardRipple);
     };

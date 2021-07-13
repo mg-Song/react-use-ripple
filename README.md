@@ -10,16 +10,20 @@ Add options
 
 ```
 {
+  id <string> Default 'react-use-ripple' ->  id is Essential, to customize startScale and endScale
   startScale <number> Default 1
   endScale <number> Default 10
 }
 ```
 
-comment
+Comment
 
 ```
-The starting and final scales were fixed, so made them to customize
+The startScale and endScale were fixed, so made them to customize
 
+but, there was an error that caused a duplicate style tag that was not good for
+
+performance, and a unique id was required to resolve this issue.
 ```
 
 ## Demo
@@ -61,6 +65,7 @@ export default App;
 
 - ref `<RefObject<HTMLElement>>`
 - options `<Object>`
+  - id `<string>` **Default** `'react-use-ripple'`
   - disabled `<boolean>` **Default** `false`
   - rippleColor\* `<string>` **Default** `rgba(0, 0, 0, 0.3)`
   - animationLength** `<number>` **Default\*\* `700`
@@ -69,13 +74,17 @@ export default App;
   - endScale**\* `<number>` **Default\*\* `10`
   - excludedRefs**\*\* `<RefObject<HTMLElement>>[]` **Default\*\* `[]`
 
-> \* `rippleColor` can be any valid css color that is supported by the targeted browsers
+> \* `id` unique id for prevent duplicate style tags, id must be essential to set the scale \* `rippleColor` can be any valid css color that is supported by the targeted browsers
 >
 > \*\* `animationLength` will always be in milliseconds
 >
 > \*\*\* `rippleSize` will use the smallest value of the length, width, or specified size. if specifying a size, the unit will be in pixels.
 >
-> \*\*\*\* `excludedRefs` a list of child refs that should not cause a ripple when clicked
+> \*\*\*\* `startScale` animation start-time scale value
+>
+> \*\*\*\* `endScale` animation end-time scale value
+>
+> \*\*\*\*\* `excludedRefs` a list of child refs that should not cause a ripple when clicked
 
 ## FAQ
 
