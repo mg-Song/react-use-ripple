@@ -4,6 +4,20 @@
 
 [![NPM](https://img.shields.io/npm/v/react-use-ripple.svg)](https://www.npmjs.com/package/react-use-ripple) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## What's Changed?
+
+```
+[Add options]
+{
+  startScale <number> Default 1
+  endScale <number> Default 10
+}
+
+[comment]
+The starting and final scales were fixed, so they were customized.
+
+```
+
 ## Demo
 
 [![Edit react-use-ripple demo](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/heuristic-currying-kp08n?fontsize=14&hidenavigation=1&theme=dark)
@@ -11,7 +25,7 @@
 ## Install
 
 ```bash
-npm install --save react-use-ripple
+npm install --save @songmg/react-use-ripple
 ```
 
 ## Usage
@@ -20,7 +34,7 @@ npm install --save react-use-ripple
 
 ```tsx
 import React from 'react';
-import { useRipple } from 'react-use-ripple';
+import { useRipple } from '@songmg/react-use-ripple';
 import { useRef } from 'react';
 
 const App = () => {
