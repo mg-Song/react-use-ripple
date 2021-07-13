@@ -6,15 +6,19 @@
 
 ## What's Changed?
 
+Add options
+
 ```
-[Add options]
 {
   startScale <number> Default 1
   endScale <number> Default 10
 }
+```
 
-[comment]
-The starting and final scales were fixed, so they were customized.
+comment
+
+```
+The starting and final scales were fixed, so made them to customize
 
 ```
 
